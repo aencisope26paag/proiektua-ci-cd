@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LoL Tooltip Inspector</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="search-box">
+    <div class="search-row">
+      <input type="text" id="searchInput" placeholder="Loading champion list..."
+             disabled autocomplete="off" spellcheck="false" aria-label="Search champion">
+      <select id="langSelect" aria-label="Language / Idioma">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+    <div id="suggestions" class="suggestions" role="listbox"></div>
+  </div>
+
+  <main id="content" aria-live="polite"></main>
+
+  <footer id="patchFooter" class="patch-footer">Loading patch version...</footer>
+
+  <noscript>This app requires JavaScript.</noscript>
+  <script src="app.js" defer></script>
+</body>
+</html>

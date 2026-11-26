@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Generados por las herramientas de iconos / sondeo
+icons/_atlas/
+icons/_candidates.json
+probe_out.txt
+
+# Editor / sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
