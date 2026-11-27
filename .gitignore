@@ -7,13 +7,14 @@ venv/
 .coverage
 htmlcov/
 
-# Generados por las herramientas de iconos / sondeo
-icons/_atlas/
-icons/_candidates.json
-probe_out.txt
+# Node
+node_modules/
 
-# Editor / sistema
+# Editor / SO
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Secretos locales
+.env

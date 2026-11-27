@@ -7,7 +7,7 @@
 body {
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
   background: var(--bg); color: var(--text);
-  max-width: 1040px; margin: 24px auto; padding: 0 16px;
+  max-width: 760px; margin: 24px auto; padding: 0 16px;
 }
 
 /* Buscador */
@@ -75,7 +75,6 @@ input:disabled { opacity: .6; }
 }
 .formula-line { font-size: .92rem; color: var(--text-bright); display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
 .formula-label { color: var(--muted); font-weight: 600; }
-.formula-line .stat-chip { white-space: nowrap; }   /* un escalado no se parte entre dos filas */
 
 /* Descripción */
 .desc { margin: 6px 0; color: var(--text); font-size: .9rem; line-height: 1.48; }
@@ -96,8 +95,6 @@ input:disabled { opacity: .6; }
 .stat-chip { display: inline-flex; align-items: baseline; gap: 4px; font-weight: 700; }
 .stat-chip .stat-icon { align-self: center; }
 .stat-icon { width: 15px; height: 15px; object-fit: contain; flex-shrink: 0; }
-/* icono dentro de texto corrido (no dentro de un chip) */
-:not(.stat-chip) > .stat-icon { vertical-align: -3px; margin-right: 3px; }
 .lvl-tag { color: var(--muted); font-weight: 400; font-size: .82rem; }
 
 /* .scope-tag: sin estilo propio; "bonus" se ve igual en fórmulas y descripciones */
@@ -115,8 +112,6 @@ input:disabled { opacity: .6; }
 .magic { color: #38bdf8; }  /* daño mágico (celeste, como en el juego; AP es el stat morado) */
 .target { color: #f0e6d2; } /* % de vida del objetivo sin tipo de daño conocido */
 .cc { color: #b37feb; }
-.kw { color: var(--text-bright); font-weight: 600; }   /* palabras clave (All Out, etc.) */
-.lbl { color: var(--text-bright); font-weight: 700; } /* "Pasiva:" / "Activa:" */
 .true { color: #fff; text-shadow: 0 0 6px rgba(255, 255, 255, .35); }
 .base { color: var(--text-bright); }
 

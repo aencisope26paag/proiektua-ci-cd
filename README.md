@@ -1,50 +1,43 @@
 # LoL Tooltip Inspector
 
-Aplicación web local para consultar las habilidades de los campeones de League of Legends, inspirada en
-los tooltips ampliados del juego (tecla `Shift`). Muestra enfriamiento, coste, descripción, notas y un
-desglose de fórmulas de escalado con código de colores por estadística, distinguiendo valores
-**base**, **adicionales (bonus)**, **totales**, **máximos** y **faltantes**.
+[![CI](https://github.com/aencisope26paag/proiektua-ci-cd/actions/workflows/ci.yml/badge.svg)](https://github.com/aencisope26paag/proiektua-ci-cd/actions)
 
-> Proyecto no oficial. No está afiliado ni respaldado por Riot Games. League of Legends y los recursos del
-> juego son propiedad de Riot Games, Inc.
+## Enunciado
 
-## Cómo funciona
+**LoL Tooltip Inspector** web aplikazio bat da, League of Legends-eko edozein txapeldunen gaitasunak modu argi eta bisualean kontsultatzeko. Jokoaren tooltip-ak irakurtzeko zailak dira, testua, zifrak eta eskalatzeak nahasten baitituzte; aplikazioak informazioa antolatzen du eta eskalatzeak (AD, AP, bizitza, armadura...) kolore eta ikonoen bidez nabarmentzen ditu.
 
-```
-Navegador (app.js) ──► Servidor Python (server.py) ──► CommunityDragon  (datos del juego, parche actual)
-  tarjetas y fórmulas     API propia: /api/...           Meraki Analytics (respaldo)
-```
+Funtzionalitate nagusiak: txapeldunen bilaketa, hizkuntza aukeratzea (gaztelania eta ingelesa), joko-bertsioaren (patch) bistaratzea eta gaitasun bakoitzaren datuak (deskribapena, hozte-denbora, kostua eta mailaka balioak).
 
-El servidor descarga el `.bin.json` de cada campeón (cifras y fórmulas) y la plantilla de texto de
-CommunityDragon, las combina en `gamedata.py` y devuelve un JSON normalizado, con caché en memoria.
+Teknologiak: **Python** backend-a (`http.server`, REST API eta cachea), **HTML/CSS/JavaScript** frontend-a, **pytest** eta **Node** testak, kodearen kudeaketa **GitHub**-en (adar eta Pull Request-ekin), eta **GitHub Actions** bidezko CI/CD pipeline-a: testak push eta merge guztietan exekutatzen dira, hutsegiteak badaude integrazioa blokeatzen da, eta `main` adarrean **Docker** irudia sortu, **Docker Hub**-era igo eta urruneko zerbitzari batean zabaltzen da.
 
-### API del servidor
+## Ejecutar en local
 
-| Ruta | Descripción |
-|---|---|
-| `GET /api/list?lang=en\|es` | Lista de campeones |
-| `GET /api/champion/<alias>_<id>?lang=en\|es` | Habilidades de un campeón |
-| `GET /api/icons` | Iconos disponibles en `icons/` |
-| `GET /api/version` | Parche actual |
-| `GET /api/debug/<id>` | Textos crudos de CommunityDragon (diagnóstico) |
-
-## Ejecutar
+Requisitos: Python 3.10 o superior.
 
 ```bash
-python server.py        # http://localhost:8000
+python server.py
 ```
 
-Requiere Python 3.9 o superior. No necesita instalar paquetes.
+Abre http://localhost:8000.
+
+## Flujo de trabajo (Git)
+
+- `main`: rama estable. Está protegida: no se hace push directo, solo merge de Pull Requests con el CI en verde.
+- `feature/<nombre>`: una rama por cada cambio (por ejemplo `feature/tests-backend`).
+- Pasos: crear rama → commits → push → Pull Request hacia `main` → CI en verde → merge.
+- Mensajes de commit en imperativo y cortos: `Añadir tests del servidor`.
 
 ## Estructura
 
 ```
-server.py      servidor HTTP, caché y rutas de la API
-gamedata.py    lector de datos del juego: fórmulas, variables @...@ y tabla de escalados
-index.html, app.js, style.css    interfaz
-icons/         iconos de estadísticas
+.
+├── server.py            # backend (API + archivos estáticos)
+├── index.html           # interfaz
+├── app.js               # lógica del frontend
+├── style.css
+├── icons/               # iconos de estadísticas
+├── requirements-dev.txt # dependencias de desarrollo (pytest)
+└── README.md
 ```
 
-## Pruebas, CI/CD y Docker
-
-_(se documentan a medida que se añaden: tests con pytest, GitHub Actions, imagen Docker.)_
+Las carpetas de tests, el Dockerfile y el workflow de CI se irán añadiendo en los siguientes pasos.
